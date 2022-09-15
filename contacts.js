@@ -1,13 +1,20 @@
 const fs = require("fs");
 const path = require("node:path");
 
-const contactsPath = path.basename("/db/contacts.json");
+const contactsPath = path.join(__dirname, "contacts.json");
 
 console.log(contactsPath);
 
-function listContacts() {}
+function listContacts() {
+  const listOfContacts = fs.readFile(contactsPath, "utf-8");
+  console.log(listOfContacts);
+  return JSON.parse(listOfContacts);
+}
 
-function getContactById(contactId) {}
+function getContactById(contactId) {
+  const listOfContacts = listContacts();
+  const contactFoundById = listOfContacts.find((item) => item.id === contactId);
+}
 
 function removeContact(contactId) {}
 
